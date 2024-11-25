@@ -17,12 +17,14 @@ const authenticate = async (req, res, next) => {
 
         const user = await User.findByPk(decoded.userId);
         if (!user) {
-            return res.status(404).json({ success: false, message: 'User  not found' });
+            return res.status(404).json({ success: false, message: 'User not found' });
         }
 
-        req.user = { id: decoded.userId };
+        req.user = { id: decoded.userId, isPremium: user.isPremium };
+        console.log('Authenticated user:', req.user);
         next();
     });
 };
+
 
 module.exports = { authenticate };

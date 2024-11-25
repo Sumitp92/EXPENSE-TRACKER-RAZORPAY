@@ -15,9 +15,13 @@ const NewRec = sequelize.define('authtable', {
         type: Sequelize.STRING,
         allowNull: false,
     },
+    isPremium: { 
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+    },
 }, {
     tableName: 'authtable', 
-    timestamps: true
+    timestamps: true,
 });
 
 NewRec.associate = (models) => {
